@@ -10,26 +10,40 @@ import './component/index.css'
 
 function App(){
 //state 설정
-let [appointmentList,setAppointmentList] = useState([]);
+ let [appointmentList,setAppointmentList] = useState([])
+//search
+ let [query,setQuery] = useState('')
+
+ //검색 필터 -> 배열 => AddInfo 불러오기
+ const filterAppointment= appointmentList.filter(
+   item => {
+     return(
+       item.petName.toLowerCase().includes(query.toLowerCase()) ||
+       item.ownerName.toLowerCase().includes(query.toLowerCase())
+     )
+   }
+ )
 //callback
-const fetchData = useCallback(()=>{
+ const fetchData = useCallback(()=>{
   fetch('./data.json')
   .then(response => response.json())
   .then(data=> setAppointmentList(data))
 }, [])
 //effect
 useEffect(()=>{fetchData()}, [fetchData])
-
   return (
 <article>
   <h3 style={{color:'green'}}>
     <AiFillRedditCircle /> 예약 시스템 </h3>
   <AddApointment />
-  <Search />
-
   <div id="list">
+  <Search
+  query={query}
+  onQueryChange={myQuery => setQuery(myQuery)}
+  />
+
     <ul>
-      {appointmentList.map(appo=>(
+      {filterAppointment.map(appo=>(
         <AddInfo
         key={appo.id}
         appo ={appo}

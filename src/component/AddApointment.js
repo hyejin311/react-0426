@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {AiOutlineLike} from 'react-icons/ai';
 
-function AddWrite({toggleForm}){
+function AddWrite({toggleForm,formData,setFormData,formDataPub}){
     if(!toggleForm){
         return null
     }
@@ -10,19 +10,40 @@ function AddWrite({toggleForm}){
 <ul>
     <li>
         <label htmlFor='userName'>예약자명</label>
-        <input type="userName" /></li>
+        <input type="text" id="userName"
+        onChange={(event) => {
+            setFormData({...formData,ownerName:event.target.value})
+        }} />
+        </li>
+
     <li>
         <label htmlFor='userBabe'>애기이름</label>
-        <input type="userBabe" /></li>
+        <input type="text" id="userBabe"
+        onChange={(event) => {
+            setFormData({...formData,petName:event.target.value})
+        }} />
+        </li>
+
     <li>
-        <label htmlFor='usertel'>전화번호</label>
-        <input type="usertel" /></li>
+        <label htmlFor='userDate'>예약일</label>
+        <input type="text" id="userDate"
+        onChange={(event) => {
+            setFormData({...formData,aptDate:event.target.value})
+        }} />
+        </li>
+
     <li>
-        <label htmlFor='userDate'>예약날짜</label>
-        <input type="userDate" /></li>
+        <label htmlFor='userTime'>예약시간</label>
+        <input type="text" id="userTime"
+        onChange={(event) => {
+            setFormData({...formData,aptTime:event.target.value})
+        }} />
+        </li>
+
     <li>
         <label htmlFor='write'>기타사항</label>
-        <textarea id="write" placeholder="기타사항"></textarea></li>
+        <textarea id="write" placeholder="기타사항"></textarea>
+        </li>
     </ul>
     <p>
         <input type="submit" />
@@ -32,7 +53,29 @@ function AddWrite({toggleForm}){
 }
 
 function AddApointment(){
+const clearData = {
+    petName :'',
+    ownerName:'',
+    aptNotes:'',
+    aptDate:''
+}
+
 let [toggleForm,setToggleForm] = useState(false);
+
+//form 데이터 생성
+let [formData,setFormData] = useState(clearData);
+
+function formDataPub(){
+    const formDataInfo = {
+        petName: formData.petName,
+        ownerName:formData.ownerName,
+        aptNotes:formData.aptNotes,
+        aptDate: formData.aptDate +' '+formData.aptTime
+    }
+    onSendAppointment(formDataInfo)
+    setFormData(clearData)
+    setToggleForm(!toggleForm)
+}
     return(
 <div id="appoint">
     <h4 onClick={()=>{
@@ -40,7 +83,11 @@ let [toggleForm,setToggleForm] = useState(false);
     }}>
     <AiOutlineLike /> 예약하기</h4>
     <AddWrite
-    toggleForm = {toggleForm} />
+    toggleForm = {toggleForm}
+    formData = {formData}
+    formDataPub= {formDataPub}
+    setFormData={setFormData}
+    />
     </div>
     )
 }
