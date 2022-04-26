@@ -1,28 +1,35 @@
+import { useState } from 'react';
 import {AiOutlineSearch, AiOutlineRocket} from 'react-icons/ai';
 
-function DropDown(){
+function DropDown({toggleSort}){
+    if(!toggleSort){
+        return null
+    }
     return(
         <ul>
-            <li>예약날짜</li>
+            <li>애기이름</li>
             <li>예약자명</li>
-            <li>예약변경 및 취소</li>
-            <li>예약수정</li>
-            <li>평점</li>
+            <li>날짜</li>
         </ul>
     )
 }
 
 
 function Search(){
+    let [toggleSort, setToggleSort] = useState(false);
     return(
         <div id="search">
             <p>
             <AiOutlineSearch />
-                <input type="text" placeholder='search'/>
-                <button type="submit">보내기</button>
+                <input type="text" placeholder="search" />
+                <button type="button"
+                onClick={
+                    ()=> {setToggleSort(!toggleSort)}
+                }>정렬하기</button>
                 <AiOutlineRocket />
             </p>
-            <DropDown />
+            <DropDown 
+            toggleSort = {toggleSort} />
         </div>
     )
 }

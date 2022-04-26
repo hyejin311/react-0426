@@ -1,12 +1,25 @@
+import React, { useState,useEffect,useCallback } from "react";
+import ReactDOM from "react-dom/client";
+
 import AddApointment from "./component/AddApointment";
 import Search from "./component/Search";
 import AddInfo from "./component/AddInfo";
-import {AiFillRedditCircle} from 'react-icons/ai';
 
+import {AiFillRedditCircle} from 'react-icons/ai';
 import './component/index.css'
-import appointmentList from './component/data.json';
 
 function App(){
+//state 설정
+let [appointmentList,setAppointmentList] = useState([]);
+//callback
+const fetchData = useCallback(()=>{
+  fetch('./data.json')
+  .then(response => response.json())
+  .then(data=> setAppointmentList(data))
+}, [])
+//effect
+useEffect(()=>{fetchData()}, [fetchData])
+
   return (
 <article>
   <h3 style={{color:'green'}}>
@@ -16,11 +29,15 @@ function App(){
 
   <div id="list">
     <ul>
-      {appointmentList.map(
-        item=>(
+      {appointmentList.map(appo=>(
         <AddInfo
-        key={item.id}
-        appo ={item}
+        key={appo.id}
+        appo ={appo}
+        onDeleteAppointment ={
+          appoId =>
+          setAppointmentList(appointmentList.filter(
+          appo => appo.id !== appoId
+        ))}
         />
       ))}
     </ul>
