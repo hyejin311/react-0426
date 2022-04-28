@@ -60,9 +60,8 @@ h3{
 }
 
 #appoint>p{
-padding:0 20px;
 margin-bottom: 20px;
-text-align: left;
+text-align: center;
 }
 
 #appoint>p>input{
@@ -75,6 +74,17 @@ text-align: left;
     border-radius: 10px;
     cursor: pointer;
     margin-left: 15%;;
+}
+
+#appoint>p>button{
+    background-color: olivedrab;
+    width:80%;
+    border:none;
+    border-radius: 10px;
+    background-color: olivedrab;
+    color:#fff;
+    padding:10px;
+    height: 100%;
 }
 
 /* search */

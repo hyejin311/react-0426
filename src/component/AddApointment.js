@@ -26,7 +26,7 @@ function AddWrite({toggleForm,formData,setFormData,formDataPub}){
 
     <li>
         <label htmlFor='userDate'>예약일</label>
-        <input type="text" id="userDate"
+        <input type="date" id="userDate"
         onChange={(event) => {
             setFormData({...formData,aptDate:event.target.value})
         }} />
@@ -34,7 +34,7 @@ function AddWrite({toggleForm,formData,setFormData,formDataPub}){
 
     <li>
         <label htmlFor='userTime'>예약시간</label>
-        <input type="text" id="userTime"
+        <input type="time" id="userTime"
         onChange={(event) => {
             setFormData({...formData,aptTime:event.target.value})
         }} />
@@ -46,13 +46,15 @@ function AddWrite({toggleForm,formData,setFormData,formDataPub}){
         </li>
     </ul>
     <p>
-        <input type="submit" />
+        <button type="submit"
+        onClick={formDataPub}>
+            예약하기</button>
     </p>
         </>
     )
 }
 
-function AddApointment(){
+function AddApointment({onSendAppointment,lastId}){
 const clearData = {
     petName :'',
     ownerName:'',
@@ -60,13 +62,14 @@ const clearData = {
     aptDate:''
 }
 
-let [toggleForm,setToggleForm] = useState(false);
+let [toggleForm,setToggleForm] = useState(true);
 
 //form 데이터 생성
 let [formData,setFormData] = useState(clearData);
 
 function formDataPub(){
     const formDataInfo = {
+       id :lastId+1, 
         petName: formData.petName,
         ownerName:formData.ownerName,
         aptNotes:formData.aptNotes,
@@ -76,7 +79,8 @@ function formDataPub(){
     setFormData(clearData)
     setToggleForm(!toggleForm)
 }
-    return(
+
+return(
 <div id="appoint">
     <h4 onClick={()=>{
         setToggleForm=(!toggleForm)

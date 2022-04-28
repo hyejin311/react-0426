@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {AiOutlineSearch, AiOutlineRocket} from 'react-icons/ai';
+import {AiOutlineSearch, AiOutlineRocket, AiFillAliwangwang} from 'react-icons/ai';
 
 function DropDown({toggleSort}){
     if(!toggleSort){
@@ -7,9 +7,11 @@ function DropDown({toggleSort}){
     }
     return(
         <ul>
-            <li>애기이름</li>
-            <li>예약자명</li>
-            <li>날짜</li>
+            <li>애기이름 <AiFillAliwangwang /></li>
+            <li>예약자명 <AiFillAliwangwang /></li>
+            <li>날짜 <AiFillAliwangwang /></li>
+            <li>오름차순 <AiFillAliwangwang /></li>
+            <li>내림차순 <AiFillAliwangwang /></li>
         </ul>
     )
 }
