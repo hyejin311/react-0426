@@ -60,24 +60,24 @@ h3{
 }
 
 #appoint>p{
-margin-bottom: 20px;
-text-align: center;
-}
+    padding:0 20px;
+    margin-bottom:20px;
+    text-align:left;
+  }
 
-#appoint>p>input{
-    width:80%;
+  #appoint>p>input{
+    width:788px;
+    margin-left:15%;
+    border:none;
+    padding:10px;
+    border-radius:4px;
+    color:#666;
     background-color:olivedrab;
     color:#fff;
-    padding:8px;
-    font-size: 17px;
-    border:none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-left: 15%;;
-}
+    cursor:pointer;
+  }
 
 #appoint>p>button{
-    background-color: olivedrab;
     width:80%;
     border:none;
     border-radius: 10px;
@@ -97,11 +97,11 @@ text-align: center;
 
 #search>p{
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     padding:0 20px;
     position:relative;
     height:40px;
-    margin:5px;
 }
 
 #search input{
@@ -119,22 +119,22 @@ text-align: center;
     border-radius: 10px;
     background-color: olivedrab;
     color:#fff;
-    padding:10px;
     height: 100%;
 }
 
 #search>ul{
     position:absolute;
-    right:-10px; top:40px;
+    right:-30px; top:40px;
+    z-index: 100;
     margin:10px;
     padding:10px;
     box-sizing: border-box;
-    width:15%;
+    width:20%;
     text-align: center;
     font-size:13px;
     border: 1px solid orange;
     border-radius: 20px;
-    box-shadow: 2px 2px 4px yellowgreen;
+    background-color: #fff;
 }
 
 #search>ul>li{

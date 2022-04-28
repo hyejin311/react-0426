@@ -14,7 +14,7 @@ function App(){
 //search
  let [query,setQuery] = useState('')
 //sort
-let [sortBy,setSortBy] = useState('ownerName')
+let [sortBy,setSortBy] = useState('petName')
 let [orderBy,setOrderBy] = useState('asc');
 
  //검색 필터 -> 배열 => AddInfo 불러오기
@@ -27,8 +27,9 @@ let [orderBy,setOrderBy] = useState('asc');
    }
  ).sort((a,b)=>{
    let order = (orderBy === 'asc') ? 1 : -1;
-   a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 * order : 1 * order 
- });
+   return(
+   a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 * order : 1 * order )
+ })
 
 //callback
  const fetchData = useCallback(()=>{
@@ -57,6 +58,10 @@ useEffect(()=>{fetchData()}, [fetchData])
   <Search
   query={query}
   onQueryChange={myQuery => setQuery(myQuery)}
+  orderBy={orderBy}
+  sortBy={sortBy}
+  onSortByChange={mySort => setSortBy(mySort)}
+  onOrderByChange={myorder => setOrderBy(myorder)}
   />
 
 <div id="list">

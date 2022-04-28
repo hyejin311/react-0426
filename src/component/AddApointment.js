@@ -62,7 +62,7 @@ const clearData = {
     aptDate:''
 }
 
-let [toggleForm,setToggleForm] = useState(true);
+let [toggleForm,setToggleForm] = useState(false);
 
 //form 데이터 생성
 let [formData,setFormData] = useState(clearData);
